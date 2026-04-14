@@ -102,7 +102,17 @@ Full specification: [SPEC.md](./SPEC.md)
 
 ## Examples
 
-Eight ready-to-use soul files in [`examples/`](./examples/):
+Eleven ready-to-use soul files in [`examples/`](./examples/):
+
+**Production agents** (deployed on [Agenturo](https://agenturo.app), running live):
+
+| File | Who |
+|---|---|
+| [agenturo-website-agent.soul.md](./examples/agenturo-website-agent.soul.md) | Agenturo's live website agent — zero hardcoded facts, fetches docs at runtime |
+| [jackie-check.soul.md](./examples/jackie-check.soul.md) | Professional fact-checker with confidence levels and verification pipeline |
+| [check-norris.soul.md](./examples/check-norris.soul.md) | Chuck Norris-themed fact-checker — character agent with hard verdict discipline |
+
+**Reference examples** (ready-to-use templates):
 
 | File | Who |
 |---|---|
