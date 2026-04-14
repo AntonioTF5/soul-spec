@@ -54,6 +54,6 @@ node scripts/validate.js examples/marcus-aurelius.soul.md
 Or install the CLI globally:
 
 ```bash
-npm install -g soul-cli
-soul-cli validate examples/marcus-aurelius.soul.md
+npm install -g soul-md-cli
+soul-md-cli validate examples/marcus-aurelius.soul.md
 ```

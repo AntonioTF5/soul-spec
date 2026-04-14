@@ -2,7 +2,7 @@
 
 **SOUL.md is an open file format for giving AI agents persistent identity.**
 
-[![Validator](https://img.shields.io/npm/v/soul-cli?label=soul-cli&color=blue)](https://www.npmjs.com/package/soul-cli)
+[![Validator](https://img.shields.io/npm/v/soul-md-cli?label=soul-md-cli&color=blue)](https://www.npmjs.com/package/soul-md-cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](./CONTRIBUTING.md)
 [![Reference Implementation: Agenturo](https://img.shields.io/badge/reference_impl-agenturo.app-black)](https://agenturo.app)
@@ -37,7 +37,7 @@ memory_mode: session
 Validate it:
 
 ```bash
-npx soul-cli validate my-agent.soul.md
+npx soul-md-cli validate my-agent.soul.md
 ```
 
 Deploy it as a live agent on your own subdomain at [agenturo.app](https://agenturo.app).
@@ -121,7 +121,7 @@ Eight ready-to-use soul files in [`examples/`](./examples/):
 
 | Tool | What it does |
 |---|---|
-| [`soul-cli`](https://www.npmjs.com/package/soul-cli) | CLI validator, scorer, and generator — `npx soul-cli validate my-agent.soul.md` |
+| [`soul-md-cli`](https://www.npmjs.com/package/soul-md-cli) | CLI validator, scorer, and generator — `npx soul-md-cli validate my-agent.soul.md` |
 | [`soul-mcp-server`](https://github.com/AntonioTF5/soul-mcp-server) | MCP server for Claude Desktop — validate and generate soul files from Claude |
 | [`awesome-soul-files`](https://github.com/AntonioTF5/awesome-soul-files) | Curated community soul files |
 
