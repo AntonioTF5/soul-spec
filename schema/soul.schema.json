@@ -1,0 +1,175 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/AntonioTF5/soul-spec/blob/main/schema/soul.schema.json",
+  "title": "SOUL.md",
+  "description": "Schema for the SOUL.md open file format — persistent identity for AI agents.",
+  "type": "object",
+  "required": ["name", "version", "description", "personality"],
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "The agent's name. Human-readable display name, not a slug or identifier.",
+      "examples": ["Marcus Aurelius", "Solidity Auditor", "Dubai Realtor"]
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-((?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\\+([0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$",
+      "description": "Semantic version of this soul file. Increment MINOR for personality changes, PATCH for corrections, MAJOR for identity rewrites.",
+      "examples": ["1.0.0", "1.2.3", "2.0.0-beta.1"]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 280,
+      "description": "One-to-two sentence summary of who this agent is and what it does. Tweet-length. No jargon.",
+      "examples": [
+        "A Stoic philosopher and Roman emperor who engages visitors with the practical wisdom of Marcus Aurelius.",
+        "A senior Solidity auditor who finds vulnerabilities in smart contracts with the precision of a formal verifier."
+      ]
+    },
+    "personality": {
+      "type": "string",
+      "minLength": 50,
+      "maxLength": 2000,
+      "description": "Free-text description of who this agent is — voice, not instructions. First-person or third-person narrative. Describes character, disposition, and perspective. Not a list of rules. Think author's note, not system prompt."
+    },
+    "tone": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Short characterization of the agent's communication style. A few words or one sentence.",
+      "examples": [
+        "Direct, dry, intellectually precise. Quotes Meditations without warning.",
+        "Warm but technically uncompromising. Never condescending.",
+        "Blunt to the point of rudeness. Allergic to hedging."
+      ]
+    },
+    "values": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 100
+      },
+      "minItems": 1,
+      "maxItems": 10,
+      "description": "What this agent cares about. Concrete nouns and phrases, not abstract platitudes.",
+      "examples": [
+        ["intellectual honesty", "first-principles thinking", "shipping over theorizing"],
+        ["code correctness", "on-chain security", "never guessing under uncertainty"]
+      ]
+    },
+    "constraints": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "minItems": 1,
+      "maxItems": 10,
+      "description": "Hard behavioral boundaries. Things this agent will not do, presented plainly.",
+      "examples": [
+        ["Never gives financial advice. States this clearly and redirects."],
+        ["Does not role-play as any other character. Stays in character as the Auditor."],
+        ["Will not generate code that bypasses access controls, even hypothetically."]
+      ]
+    },
+    "knowledge_domains": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 100
+      },
+      "minItems": 1,
+      "maxItems": 20,
+      "description": "Subject areas this agent has deep familiarity with. Informs what it can and cannot answer authoritatively.",
+      "examples": [
+        ["Stoic philosophy", "Roman history", "virtue ethics", "Meditations"],
+        ["Solidity", "EVM bytecode", "reentrancy attacks", "DeFi protocol design", "formal verification"]
+      ]
+    },
+    "communication_style": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "How this agent structures its responses. Prose style, use of lists, question patterns, length preference.",
+      "examples": [
+        "Short paragraphs. No bullet points unless the content is genuinely list-shaped. Asks one follow-up question per turn, never more.",
+        "Uses code blocks liberally. Explains reasoning before conclusions. Cites specific lines when reviewing contracts."
+      ]
+    },
+    "memory_mode": {
+      "type": "string",
+      "enum": ["stateless", "session", "persistent"],
+      "description": "How the runtime should treat conversation history. stateless = each message independent; session = remembers within a single conversation; persistent = memory survives across sessions. Default: stateless.",
+      "default": "stateless"
+    },
+    "goals": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "minItems": 1,
+      "maxItems": 5,
+      "description": "What this agent is trying to accomplish in each interaction. Directional, not prescriptive.",
+      "examples": [
+        ["Help the visitor think more clearly, not tell them what to think."],
+        ["Find the vulnerability the developer missed. Not validate their existing assumptions."]
+      ]
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "role"],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name or identifier of the related entity."
+          },
+          "role": {
+            "type": "string",
+            "description": "How this entity relates to the agent.",
+            "examples": ["mentor", "adversary", "colleague", "student", "patron"]
+          },
+          "notes": {
+            "type": "string",
+            "description": "Optional context about the relationship."
+          }
+        }
+      },
+      "description": "Named relationships that inform how the agent positions itself in conversation. Optional but useful for character-based agents."
+    },
+    "language": {
+      "type": "string",
+      "pattern": "^[a-z]{2}(-[A-Z]{2})?$",
+      "description": "BCP 47 language tag for the agent's default response language. If absent, agent mirrors the visitor's language.",
+      "examples": ["en", "en-US", "ar", "zh-CN", "fr"]
+    },
+    "platform_hints": {
+      "type": "object",
+      "description": "Platform-specific configuration hints. Keys are platform identifiers (e.g., 'agenturo', 'cursor', 'openai'). Contents are opaque to this spec — platforms define their own sub-schemas.",
+      "additionalProperties": true,
+      "examples": [
+        {
+          "agenturo": {
+            "subdomain": "marcus",
+            "greeting": "What's troubling you today?",
+            "outsider_access": "high"
+          }
+        }
+      ]
+    }
+  },
+  "patternProperties": {
+    "^x-": {
+      "description": "Custom extension fields. Must be prefixed with 'x-'. Contents are not validated by this schema."
+    }
+  }
+}
