@@ -10,6 +10,23 @@ SOUL.md was created by Anton Agafonov at [Agenturo](https://agenturo.app) to sol
 
 ---
 
+## Positioning in the Agent Stack
+
+The agent infrastructure stack is consolidating around four distinct layers:
+
+| Layer | Standard | Steward | What it governs |
+|---|---|---|---|
+| Naming | ENS | Ethereum Name Service | Who owns an agent's name and identity |
+| Communication | MCP | Anthropic | How agents talk to tools and external services |
+| Codebase context | AGENTS.md | Linux Foundation (Agentic AI Foundation) | How coding agents read and understand repositories |
+| **Identity** | **SOUL.md** | **Open** | **Who the agent is — personality, voice, values, behavior** |
+
+SOUL.md is the identity layer. It is the only layer in the stack that describes the agent as a persistent *character* rather than a set of instructions or capabilities. A soul file tells any runtime — regardless of platform — who this agent is before any conversation begins.
+
+The NCCoE AI Agent Interoperability Profile (target: Q4 2026) is the standards venue where this layer should be formalized. SOUL.md is a candidate specification for that slot. Formal comments have been submitted to the CAISI listening sessions and to the Linux Foundation's Agentic AI Foundation.
+
+---
+
 ## File Format
 
 A SOUL.md file is a Markdown file with a YAML frontmatter block at the top, optionally followed by Markdown body content.

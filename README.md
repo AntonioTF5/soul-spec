@@ -54,6 +54,19 @@ SOUL.md is that format. It's a structured, portable description of an agent's id
 
 The format was created by [Anton Agafonov](https://github.com/AntonioTF5) at [Agenturo](https://agenturo.app) — a platform where every agent is defined by a SOUL.md file and deployed on a branded subdomain. It's been running in production for months. We're opening the format so any platform can adopt it.
 
+### Where SOUL.md fits
+
+The agent infrastructure stack is consolidating around four distinct layers. SOUL.md is the missing one:
+
+| Layer | Standard | What it governs |
+|---|---|---|
+| Naming | ENS | Who owns an agent's name |
+| Communication | MCP (Anthropic) | How agents talk to tools |
+| Codebase context | AGENTS.md (Linux Foundation) | How coding agents read repos |
+| **Identity** | **SOUL.md** | **Who the agent is — personality, voice, values** |
+
+SOUL.md is a candidate specification for the identity layer in the [NCCoE AI Agent Interoperability Profile](https://www.nccoe.nist.gov/) (Q4 2026 target).
+
 ---
 
 ## Format overview
